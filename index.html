@@ -1,27 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz app</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Quiz App</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="app">
-        <h1> Take a quiz </h1>
-        <div class="quiz">
-            <h2 id="ques">question1</h2>
-            <div id="answer-button">
-                <button class="btn"> ans1</button>
-                <button class="btn"> ans1</button>
-                <button class="btn"> ans1</button>
-                <button class="btn"> ans1</button>
-
-            </div>
-            <button id="next-button">Next</button>
+  <div class="container">
+    <div class="quiz-card">
+      
+      <!-- Start Screen -->
+      <div id="startScreen" class="start-screen">
+        <h1 class="start-title">🧠 Knowledge Quiz</h1>
+        <p class="start-description">
+          Test your knowledge with our interactive quiz! Answer 12 questions across various topics and see how well you score.
+        </p>
+        <div class="quiz-stats">
+          <div class="stat-card">
+            <div class="stat-value">12</div>
+            <div class="stat-label">Questions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value">15s</div>
+            <div class="stat-label">Per Question</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="highScoreDisplay">0%</div>
+            <div class="stat-label">High Score</div>
+          </div>
         </div>
+        <button class="btn" onclick="startQuiz()">Start Quiz</button>
+      </div>
+
+      <!-- Quiz Interface -->
+      <div id="quizInterface" class="hidden">
+        <div class="quiz-header">
+          <h1 class="quiz-title">Knowledge Quiz</h1>
+          <div class="quiz-subtitle">Test your knowledge!</div>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-info">
+            <span id="questionProgress">Question 1 of 12</span>
+            <div class="timer">
+              <span>⏱️</span>
+              <span id="timeLeft">15</span>s
+            </div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+
+        <div class="quiz-content">
+          <div class="question">
+            <h2 class="question-text" id="questionText"></h2>
+            <div class="answers" id="answersContainer"></div>
+          </div>
+
+          <div class="feedback" id="feedback"></div>
+
+          <div class="score-display">
+            Score: <span id="currentScore">0</span> / <span id="totalQuestions">12</span>
+          </div>
+
+          <div class="control-buttons">
+            <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Next Question</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Screen -->
+      <div id="resultsScreen" class="hidden">
+        <div class="results">
+          <h1 class="results-title">🎉 Quiz Complete!</h1>
+          <div class="final-score" id="finalScore">85%</div>
+          
+          <div id="newHighScore" class="high-score hidden">
+            🏆 New High Score! Congratulations!
+          </div>
+
+          <div class="score-breakdown">
+            <div class="stat-card">
+              <div class="stat-value" id="correctAnswers">10</div>
+              <div class="stat-label">Correct</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="incorrectAnswers">2</div>
+              <div class="stat-label">Incorrect</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="accuracy">83%</</div>
+              <div class="stat-label">Accuracy</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="timeSpent">3:45</div>
+              <div class="stat-label">Time Taken</div>
+            </div>
+          </div>
+
+          <div class="control-buttons">
+            <button class="btn" onclick="restartQuiz()">Try Again</button>
+            <button class="btn btn-secondary" onclick="goToStart()">Main Menu</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="script.js"></script>
-    
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
